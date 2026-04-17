@@ -1,16 +1,21 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { api } from '../api/api'
 import { ChatWindow, type ChatMessage } from '../components/chat/ChatWindow'
 import { AppHeader } from '../components/layout/AppHeader'
 import { QuotaProgress } from '../components/quota/QuotaProgress'
 import { RateLimitPanel } from '../components/quota/RateLimitPanel'
 import { UpgradeModal } from '../components/quota/UpgradeModal'
-import { UsageHistoryChart } from '../components/quota/UsageHistoryChart'
 import { SectionCard } from '../components/ui/SectionCard'
 import { useAuth } from '../context/AuthContext'
 import { useCountdown } from '../hooks/useCountdown'
 import type { ApiClientError, DailyUsageItem, QuotaStatusResponse } from '../types/api'
 import { estimateTokens, PLAN_RATE_LIMIT } from '../utils/tokens'
+
+const UsageHistoryChart = lazy(() =>
+  import('../components/quota/UsageHistoryChart').then((module) => ({
+    default: module.UsageHistoryChart,
+  })),
+)
 
 const toUiTime = (date: Date): string =>
   date.toLocaleTimeString([], {
@@ -240,7 +245,9 @@ export const DashboardPage = () => {
           </SectionCard>
 
           <SectionCard title="Usage history" description="Last 7 days token consumption.">
-            <UsageHistoryChart data={history} />
+            <Suspense fallback={<p className="text-sm text-slate-500">Loading chart...</p>}>
+              <UsageHistoryChart data={history} />
+            </Suspense>
           </SectionCard>
         </aside>
       </main>

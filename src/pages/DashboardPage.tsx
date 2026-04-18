@@ -78,7 +78,7 @@ export const DashboardPage = () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadQuota().catch((caughtError: unknown) => {
       const message =
-        caughtError instanceof Error ? caughtError.message : 'Could not load quota state.'
+        caughtError instanceof Error ? caughtError.message : 'No se pudo cargar el estado de la cuota.'
       setError(message)
     })
   }, [loadQuota, user])
@@ -158,7 +158,7 @@ export const DashboardPage = () => {
         setUpgradeOpen(true)
       }
 
-      const message = apiError.data?.message ?? apiError.message ?? 'Could not send prompt.'
+      const message = apiError.data?.message ?? apiError.message ?? 'No se pudo enviar la solicitud.'
       setError(message)
 
       const assistantMessage: ChatMessage = {
@@ -192,7 +192,7 @@ export const DashboardPage = () => {
       await loadQuota()
     } catch (caughtError) {
       const message =
-        caughtError instanceof Error ? caughtError.message : 'Upgrade failed. Try again.'
+        caughtError instanceof Error ? caughtError.message : 'La actualizacion fallo. Intentalo de nuevo.'
       setError(message)
     } finally {
       setUpgradeBusy(false)
@@ -223,19 +223,19 @@ export const DashboardPage = () => {
         </section>
 
         <aside className="space-y-5 lg:sticky lg:top-6 lg:col-span-2">
-          <SectionCard title="Quota status" description="Updated after each request.">
+          <SectionCard title="Estado de cuota" description="Actualizado despues de cada solicitud.">
             <div className="space-y-4">
               <QuotaProgress
                 usedTokens={quota?.usedTokens ?? 0}
                 remainingTokens={quota?.remainingTokens ?? null}
               />
               <p className="border-l-2 border-sky-300 pl-3 text-xs text-slate-600">
-                Reset date: {quota?.resetDate ?? '--'}
+                Fecha de reinicio: {quota?.resetDate ?? '--'}
               </p>
             </div>
           </SectionCard>
 
-          <SectionCard title="Rate limit tracker" description="Request counter + countdown.">
+          <SectionCard title="Control de limite" description="Contador de solicitudes y cuenta regresiva.">
             <RateLimitPanel
               requestsThisWindow={windowResetInSeconds > 0 ? requestsThisWindow : 0}
               rateLimit={rateLimit}
@@ -244,8 +244,8 @@ export const DashboardPage = () => {
             />
           </SectionCard>
 
-          <SectionCard title="Usage history" description="Last 7 days token consumption.">
-            <Suspense fallback={<p className="text-sm text-slate-500">Loading chart...</p>}>
+          <SectionCard title="Historial de uso" description="Consumo de tokens de los ultimos 7 dias.">
+            <Suspense fallback={<p className="text-sm text-slate-500">Cargando grafico...</p>}>
               <UsageHistoryChart data={history} />
             </Suspense>
           </SectionCard>

@@ -16,7 +16,7 @@ import type {
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 if (!API_BASE_URL) {
-  throw new Error('VITE_API_BASE_URL is missing. Configure it in .env file.')
+  throw new Error('Falta VITE_API_BASE_URL. Configuralo en el archivo .env.')
 }
 
 const buildError = (
@@ -53,11 +53,11 @@ const request = async <T>(
     try {
       errorData = (await response.json()) as ApiError
     } catch {
-      throw buildError('Unexpected server error', response.status, undefined, retryAfterSeconds)
+      throw buildError('Error inesperado del servidor', response.status, undefined, retryAfterSeconds)
     }
 
     throw buildError(
-      errorData.message || 'Request failed',
+      errorData.message || 'La solicitud fallo',
       response.status,
       errorData,
       retryAfterSeconds,

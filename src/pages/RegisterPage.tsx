@@ -32,15 +32,15 @@ export const RegisterPage = () => {
     const nextErrors: Partial<Record<'name' | 'email' | 'password' | 'form', string>> = {}
 
     if (!isValidName(form.name)) {
-      nextErrors.name = 'Name must contain at least 2 characters.'
+      nextErrors.name = 'El nombre debe tener al menos 2 caracteres.'
     }
 
     if (!isValidEmail(form.email)) {
-      nextErrors.email = 'Use a valid email address.'
+      nextErrors.email = 'Usa un correo electronico valido.'
     }
 
     if (!isValidPassword(form.password)) {
-      nextErrors.password = 'Password must contain at least 6 characters.'
+      nextErrors.password = 'La contrasena debe tener al menos 6 caracteres.'
     }
 
     setErrors(nextErrors)
@@ -73,7 +73,7 @@ export const RegisterPage = () => {
 
       navigate('/app', { replace: true })
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Registration failed.'
+      const message = error instanceof Error ? error.message : 'El registro fallo.'
       setErrors({ form: message })
     } finally {
       setBusy(false)
@@ -84,14 +84,14 @@ export const RegisterPage = () => {
     <main className="min-h-screen bg-transparent px-4 py-10 sm:px-8">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2 lg:items-stretch">
         <section className="hidden border border-slate-300 bg-gradient-to-br from-cyan-100 via-sky-50 to-white p-8 shadow-[0_20px_60px_-35px_rgba(8,145,178,0.45)] lg:block">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-700">Create Your Access</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-700">Crea tu acceso</p>
           <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900">
-            Start with FREE and scale your AI usage as your needs grow.
+            Comienza con GRATIS y escala tu uso de IA a medida que crecen tus necesidades.
           </h2>
           <div className="mt-6 space-y-3 text-sm text-slate-700">
-            <p className="border-l-2 border-sky-400 pl-3">Secure email-based authentication flow.</p>
-            <p className="border-l-2 border-cyan-400 pl-3">Plan-aware controls from your first request.</p>
-            <p className="border-l-2 border-teal-400 pl-3">Usage analytics and quota history included.</p>
+            <p className="border-l-2 border-sky-400 pl-3">Flujo de autenticacion seguro basado en correo.</p>
+            <p className="border-l-2 border-cyan-400 pl-3">Controles por plan desde tu primera solicitud.</p>
+            <p className="border-l-2 border-teal-400 pl-3">Incluye analitica de uso e historial de cuota.</p>
           </div>
         </section>
 

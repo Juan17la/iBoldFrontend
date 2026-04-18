@@ -10,16 +10,16 @@ export const QuotaProgress = ({ usedTokens, remainingTokens }: QuotaProgressProp
   return (
     <div>
       <div className="mb-2 flex items-center justify-between text-sm text-slate-600">
-        <span className="font-medium">Monthly token quota</span>
+        <span className="font-medium">Cuota mensual de tokens</span>
         <span className="font-semibold text-slate-700">
           {remainingTokens === null
-            ? `${usedTokens.toLocaleString()} used (unlimited)`
+            ? `${usedTokens.toLocaleString()} usados (ilimitado)`
             : `${usedTokens.toLocaleString()} / ${total?.toLocaleString()}`}
         </span>
       </div>
       {remainingTokens === null ? (
         <div className="border border-emerald-300 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700 rounded-none">
-          Unlimited plan
+          Plan ilimitado
         </div>
       ) : (
         <div className="h-3 border border-slate-300 bg-slate-100 rounded-none">
@@ -30,7 +30,7 @@ export const QuotaProgress = ({ usedTokens, remainingTokens }: QuotaProgressProp
         </div>
       )}
       {remainingTokens !== null ? (
-        <p className="mt-2 text-xs font-medium text-slate-500">Used {percentage}% of monthly quota</p>
+        <p className="mt-2 text-xs font-medium text-slate-500">Has usado {percentage}% de la cuota mensual</p>
       ) : null}
     </div>
   )

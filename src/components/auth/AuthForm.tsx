@@ -32,15 +32,15 @@ export const AuthForm = ({
   return (
     <div className="mx-auto w-full max-w-md border border-slate-300 bg-white/95 p-6 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.55)] sm:p-8 rounded-none">
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700">
-        {isRegister ? 'New account' : 'Secure login'}
+        {isRegister ? 'Nueva cuenta' : 'Acceso seguro'}
       </p>
       <h1 className="mt-1 text-2xl font-semibold text-slate-900">
-        {isRegister ? 'Create account' : 'Welcome back'}
+        {isRegister ? 'Crear cuenta' : 'Bienvenido de nuevo'}
       </h1>
       <p className="mt-2 text-sm text-slate-600">
         {isRegister
-          ? 'Start consuming AI through quota-aware proxies.'
-          : 'Sign in to continue with your plan limits and usage.'}
+          ? 'Comienza a consumir IA mediante proxys con control de cuota.'
+          : 'Inicia sesion para continuar con los limites y el uso de tu plan.'}
       </p>
 
       <form
@@ -52,7 +52,7 @@ export const AuthForm = ({
       >
         {isRegister ? (
           <label className="block">
-            <span className="mb-1 block text-sm font-medium text-slate-800">Name</span>
+            <span className="mb-1 block text-sm font-medium text-slate-800">Nombre</span>
             <input
               type="text"
               value={form.name}
@@ -65,7 +65,7 @@ export const AuthForm = ({
         ) : null}
 
         <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-800">Email</span>
+          <span className="mb-1 block text-sm font-medium text-slate-800">Correo</span>
           <input
             type="email"
             value={form.email}
@@ -77,13 +77,13 @@ export const AuthForm = ({
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-800">Password</span>
+          <span className="mb-1 block text-sm font-medium text-slate-800">Contrasena</span>
           <input
             type="password"
             value={form.password}
             onChange={(event) => onFieldChange('password', event.target.value)}
             className="w-full border border-slate-300 bg-slate-50/60 px-3 py-2 text-sm outline-none transition focus:border-sky-600 focus:bg-white rounded-none"
-            placeholder="At least 6 characters"
+            placeholder="Al menos 6 caracteres"
           />
           <FieldError message={errors.password} />
         </label>
@@ -96,9 +96,9 @@ export const AuthForm = ({
               onChange={(event) => onPlanChange(event.target.value as Plan)}
               className="w-full border border-slate-300 bg-slate-50/60 px-3 py-2 text-sm outline-none transition focus:border-sky-600 focus:bg-white rounded-none"
             >
-              <option value="FREE">FREE</option>
+              <option value="FREE">GRATIS</option>
               <option value="PRO">PRO</option>
-              <option value="ENTERPRISE">ENTERPRISE</option>
+              <option value="ENTERPRISE">EMPRESARIAL</option>
             </select>
           </label>
         ) : null}
@@ -111,17 +111,17 @@ export const AuthForm = ({
           disabled={busy}
         >
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-          {isRegister ? 'Create account' : 'Login'}
+          {isRegister ? 'Crear cuenta' : 'Iniciar sesion'}
         </button>
       </form>
 
       <p className="mt-5 text-sm text-slate-600">
-        {isRegister ? 'Already have an account?' : 'Need an account?'}{' '}
+        {isRegister ? 'Ya tienes una cuenta?' : 'Necesitas una cuenta?'}{' '}
         <Link
           to={isRegister ? '/login' : '/register'}
           className="font-semibold text-slate-900 underline"
         >
-          {isRegister ? 'Login' : 'Register'}
+          {isRegister ? 'Iniciar sesion' : 'Registrarte'}
         </Link>
       </p>
     </div>
